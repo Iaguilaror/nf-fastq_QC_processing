@@ -15,8 +15,8 @@ MKSHELL=/bin/bash
 		$stem'_R2.paired.fastq.gz' \
 		$stem'_R2.unpaired.fastq.gz' \
 		ILLUMINACLIP:all_adapters_v0.38.fa:2:30:10 \
-		AVGQUAL:$trim_avgqual \
-		LEADING:$trim_leading \
-		TRAILING:$trim_trailing \
-		SLIDINGWINDOW:$trim_slide_size:$trim_slide_qual \
-		MINLEN:$trim_minlen
+		AVGQUAL:$TRIM_AVGQUAL \
+		LEADING:$TRIM_LEADING \
+		TRAILING:$TRIM_TRAILING \
+		SLIDINGWINDOW:$TRIM_SLIDE_SIZE:$TRIM_SLIDE_QUAL \
+		MINLEN:$TRIM_MINLEN

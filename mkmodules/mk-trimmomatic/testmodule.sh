@@ -3,12 +3,12 @@
 
 ###
 ## environment variable setting
-export trim_avgqual=30
-export trim_leading=0
-export trim_trailing=0
-export trim_slide_size=6
-export trim_slide_qual=30
-export trim_minlen=38
+export TRIM_AVGQUAL=30
+export TRIM_LEADING=0
+export TRIM_TRAILING=0
+export TRIM_SLIDE_SIZE=6
+export TRIM_SLIDE_QUAL=30
+export TRIM_MINLEN=38
 ###
 
 echo "[>..] test running this module with data in test/data"
@@ -18,7 +18,7 @@ mkdir -p test/results
 echo "[>>.] results will be created in test/results"
 ## Execute runmk.sh, it will find the basic example in test/data
 ## Move results from test/data to test/results
-## results files are *.paired.fastq.gz and *.unpaired.fastq.gz
+## results files are *.paired.fastq.gz and *.unpaired.fastq.gz *.trimlog.txt
 ./runmk.sh \
 && mv test/data/*.paired.fastq.gz test/data/*.unpaired.fastq.gz test/data/*.trimlog.txt test/results \
 && echo "[>>>] Module Test Successful"
