@@ -1,0 +1,9 @@
+MKSHELL=/bin/bash
+
+# ask for the QC report
+%_fastqc.html:Q: %.fastq.gz
+	echo "[DEBUG] analyze QC for $prereq"
+	fastqc --nogroup $prereq
+	# carefull with the --nogroup
+	# WARNING: Using this option will cause fastqc to crash and burn if you use it on
+  # really long reads, and your plots may end up a ridiculous size.
