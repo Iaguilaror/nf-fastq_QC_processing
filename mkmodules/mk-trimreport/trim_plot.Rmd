@@ -1,5 +1,5 @@
 ---
-title: "trimmomatic report"
+title: "Trimming report"
 author: Israel Aguilar
 date: "`r Sys.time()`"
 output: pdf_document
@@ -72,7 +72,7 @@ data_per.df <- data.df %>%
 
 # print table with percentages
 data_per.df %>%
-  mutate( pair_survived = percent( pair_survived, accuracy = 0.01), 
+  mutate( pair_survived = percent( pair_survived, accuracy = 0.01),
           fwd_only = percent( fwd_only, accuracy = 0.01),
           rev_only = percent( rev_only, accuracy = 0.01),
           dropped = percent( dropped, accuracy = 0.01)) %>%

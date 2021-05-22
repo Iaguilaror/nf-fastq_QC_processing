@@ -2,8 +2,7 @@ MKSHELL="/bin/bash"
 
 all_samples_trim_report.pdf:Q: all_samples_trim_report.tsv
 	echo "[DEBUG] create the Rmd report"
-  R -e \
-		"rmarkdown::render('trim_plot.Rmd', output_file='all_samples_trim_report.pdf')"
+  Rscript --vanilla runthermd.R $target
 
 all_samples_trim_report.tsv:Q:
 	echo "[DEBUG] create the TSV report"

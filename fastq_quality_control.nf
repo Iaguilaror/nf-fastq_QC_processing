@@ -34,6 +34,9 @@ Core-processing:
 Pos-processing
   _pos1_fastqc_after
 
+Anlysis
+ _an1_trimreport
+
 ================================================================*/
 
 /* Define the help message as a function to call when needed *//////////////////////////////
@@ -279,6 +282,36 @@ process _001_trimmomatic {
   export TRIM_SLIDE_SIZE="${params.trim_slide_size}"
   export TRIM_SLIDE_QUAL="${params.trim_slide_qual}"
   export TRIM_MINLEN="${params.trim_minlen}"
+	bash runmk.sh
+	"""
+
+}
+
+/* gather all trimreport.txt files */
+results_001_trimmomatic_trimreport
+	.toList()
+	// .view()
+	.set{ all_trimreports }
+
+/* 	Process _an1_trimreport */
+/* Read mkfile module files */
+Channel
+	.fromPath("${workflow.projectDir}/mkmodules/mk-trimreport/*")
+	.toList()
+	.set{ mkfiles_an1 }
+
+process _an1_trimreport {
+
+	publishDir "${results_dir}/_an1_trimreport/",mode:"copy"
+
+	input:
+	file reports from all_trimreports
+	file mk_files from mkfiles_an1
+
+	output:
+	file "*.pdf"
+
+	"""
 	bash runmk.sh
 	"""
 
