@@ -1,5 +1,5 @@
 input_dir="real-data/8paired_samples_montpe/"
-output_directory="$(dirname $input_dir)/results"
+output_directory="$input_dir/results"
 
 nextflow run fastq_quality_control.nf \
 	--input_dir $input_dir \
