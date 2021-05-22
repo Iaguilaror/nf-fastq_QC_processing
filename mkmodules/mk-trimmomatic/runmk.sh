@@ -5,5 +5,5 @@
 find -L . \
   -type f \
   -name "*R1.fastq.gz" \
-| sed 's#.fastq.gz$#.paired.fastq.gz#' \
+| sed 's#_R1.fastq.gz$#.trimreport.txt#' \
 | xargs mk

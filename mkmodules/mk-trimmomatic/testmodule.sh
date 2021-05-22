@@ -18,7 +18,7 @@ mkdir -p test/results
 echo "[>>.] results will be created in test/results"
 ## Execute runmk.sh, it will find the basic example in test/data
 ## Move results from test/data to test/results
-## results files are *.paired.fastq.gz and *.unpaired.fastq.gz *.trimlog.txt
+## results files are *.paired.fastq.gz and *.unpaired.fastq.gz *.trimlog.txt *.trimreport.txt
 ./runmk.sh \
-&& mv test/data/*.paired.fastq.gz test/data/*.unpaired.fastq.gz test/data/*.trimlog.txt test/results \
+&& mv test/data/*.trimreport.txt test/data/*.paired.fastq.gz test/data/*.unpaired.fastq.gz test/data/*.trimlog.txt test/results \
 && echo "[>>>] Module Test Successful"

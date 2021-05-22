@@ -270,6 +270,7 @@ process _001_trimmomatic {
 	output:
 	file "*.fastq.gz" into results_001_trimmomatic_trimmed_fq
   file "*.trimlog.txt" into results_001_trimmomatic_trimlog
+	file "*.trimreport.txt" into results_001_trimmomatic_trimreport
 
 	"""
   export TRIM_AVGQUAL="${params.trim_avgqual}"
