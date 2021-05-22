@@ -37,6 +37,8 @@ Pos-processing
 Anlysis
  _an1_trimreport
 
+ENDING
+ _register_configs
 ================================================================*/
 
 /* Define the help message as a function to call when needed *//////////////////////////////
@@ -313,6 +315,31 @@ process _an1_trimreport {
 
 	"""
 	bash runmk.sh
+	"""
+
+}
+
+/* prepare for ENDing pipeline */
+
+/* _register_configs
+ to know which parameters where used for each results dir */
+/* Read nextflow config file */
+Channel
+	.fromPath("${workflow.projectDir}/nextflow.config")
+	.set{ nfconfig }
+
+process _register_configs {
+
+	publishDir "${params.output_dir}",mode:"copy"
+
+	input:
+	file config from nfconfig
+
+	output:
+	file "${config}_used.txt"
+
+	"""
+	cat ${config} > ${config}_used.txt
 	"""
 
 }
