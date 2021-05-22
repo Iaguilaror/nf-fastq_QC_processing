@@ -1,0 +1,102 @@
+---
+title: "trimmomatic report"
+author: Israel Aguilar
+date: "`r Sys.time()`"
+output: pdf_document
+---
+
+# number of reads as totals
+```{r, echo=FALSE, message=FALSE}
+# read the data
+data.df <- vroom::vroom(file = "all_samples_trim_report.tsv")
+
+# print the table
+knitr::kable( x = data.df, caption = 'Raw numbers of reads before and after trimming',
+              format.args = list(big.mark = ",", scientific = FALSE) )
+```
+
+```{r, echo=FALSE, message=FALSE}
+#load libs
+library("dplyr")
+
+# pivot data
+longdata.df <- data.df %>%
+  tidyr::pivot_longer( cols = -sample, names_to = "read_subset", values_to = "number" )
+
+```
+
+```{r, echo=FALSE, message=FALSE, fig.dim = c(5, 5), fig.align = 'center'}
+#load libs
+library("ggplot2")
+
+#define a palette
+my_palette.v <- c("dropped" = "#040303",
+                  "rev_only" = "#d5f9de",
+                  "fwd_only" = "#dbf4a7",
+                  "pair_survived" = "#8fa6cb")
+
+# define a theme
+my_theme <- cowplot::theme_cowplot() +
+  theme( axis.text.x = element_text( angle = 45, vjust = 0.5, hjust = 0.5),
+         axis.text = element_text(size = 6),
+         text = element_text( size = 10))
+
+# stacked barplot
+longdata.df %>%
+  filter( read_subset != "original") %>%
+  mutate( read_subset = factor(read_subset, levels = c("dropped",
+                                                       "rev_only",
+                                                       "fwd_only",
+                                                       "pair_survived") )) %>%
+  ggplot( data = ., mapping = aes( x = sample, y = number, fill = read_subset) ) +
+  geom_col( ) +
+  scale_fill_manual( values = my_palette.v) +
+  scale_y_continuous( expand = c(0,0)) +
+  labs( title = "Reads surviving trimming",
+        fill = "Trim effect\n on reads") +
+  my_theme
+
+```
+
+# number of reads as percentage
+```{r, echo=FALSE, message=FALSE}
+library("scales")
+
+# create table with freqs
+data_per.df <- data.df %>%
+  mutate( pair_survived = pair_survived / original,
+          fwd_only = fwd_only / original,
+          rev_only = rev_only / original,
+          dropped = dropped / original) %>%
+  select( -original )
+
+# print table with percentages
+data_per.df %>%
+  mutate( pair_survived = percent( pair_survived, accuracy = 0.01), 
+          fwd_only = percent( fwd_only, accuracy = 0.01),
+          rev_only = percent( rev_only, accuracy = 0.01),
+          dropped = percent( dropped, accuracy = 0.01)) %>%
+  knitr::kable( x = ., caption = 'Percentage of reads after trimming', align = "lcccc")
+```
+
+```{r, echo=FALSE, message=FALSE, fig.dim = c(5, 5), fig.align = 'center'}
+# pivot data
+longdata_per.df <- data_per.df %>%
+  tidyr::pivot_longer( cols = -sample, names_to = "read_subset", values_to = "number" )
+
+# stacked barplot
+longdata_per.df %>%
+  mutate( read_subset = factor(read_subset, levels = c("dropped",
+                                                       "rev_only",
+                                                       "fwd_only",
+                                                       "pair_survived") )) %>%
+  ggplot( data = ., mapping = aes( x = sample, y = number, fill = read_subset) ) +
+  geom_col( ) +
+  scale_fill_manual( values = my_palette.v) +
+  scale_y_continuous( expand = c(0,0), labels= percent ) +
+  labs( title = "Reads surviving trimming",
+        y = "Ammount",
+        fill = "Trim effect\n on reads") +
+  my_theme
+
+```

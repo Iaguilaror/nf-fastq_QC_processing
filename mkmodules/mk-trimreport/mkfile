@@ -1,0 +1,22 @@
+MKSHELL="/bin/bash"
+
+all_samples_trim_report.pdf:Q: all_samples_trim_report.tsv
+	echo "[DEBUG] create the Rmd report"
+  R -e \
+		"rmarkdown::render('trim_plot.Rmd', output_file='all_samples_trim_report.pdf')"
+
+all_samples_trim_report.tsv:Q:
+	echo "[DEBUG] create the TSV report"
+	# create header
+	echo "sample original pair_survived fwd_only rev_only dropped" | tr " " "\t" > $target
+	for ifile in $(find -L . -type f -name "*.trimreport.txt")
+	do
+		sample=$(basename $ifile .trimreport.txt)
+		infoline=$(grep "Input Read Pairs:" $ifile)
+		inputreads=$(echo $infoline | cut -d" " -f4)
+		pairsurvived=$(echo $infoline | cut -d" " -f7)
+		forwardonly=$(echo $infoline | cut -d" " -f12)
+		reverseonly=$(echo $infoline | cut -d" " -f17)
+		dropped=$(echo $infoline | cut -d" " -f20)
+		echo "$sample $inputreads $pairsurvived $forwardonly $reverseonly $dropped" | tr " " "\t" >> $target
+	done
