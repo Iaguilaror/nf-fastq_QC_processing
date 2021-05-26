@@ -32,7 +32,7 @@ Core-processing:
   _001_trimmomatic
 
 Pos-processing
-  _pos1_fastqc_after
+  _pos1_gather_sample
 
 Anlysis
  _an1_trimreport
@@ -312,6 +312,30 @@ process _an1_trimreport {
 
 	output:
 	file "*.pdf"
+
+	"""
+	bash runmk.sh
+	"""
+
+}
+
+/* 	Process _pos1_gather_sample */
+/* Read mkfile module files */
+Channel
+	.fromPath("${workflow.projectDir}/mkmodules/mk-gather-sample/*")
+	.toList()
+	.set{ mkfiles_pos1 }
+
+process _pos1_gather_sample {
+
+	publishDir "${results_dir}/_pos1_gather_sample/",mode:"copy"
+
+	input:
+	file fq from results_001_trimmomatic_trimmed_fq
+	file mk_files from mkfiles_pos1
+
+	output:
+	file "*"
 
 	"""
 	bash runmk.sh

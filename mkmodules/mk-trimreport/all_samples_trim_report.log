@@ -1,12 +1,12 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.5.22)  22 MAY 2021 18:10
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019/Debian) (preloaded format=pdflatex 2021.5.22)  26 MAY 2021 13:53
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
-**/home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/7
-3/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report.tex
+**/home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/d
+1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report.tex
 
-(/home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/73
-/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report.tex
+(/home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/d1
+/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report.tex
 LaTeX2e <2020-02-02> patch level 2
 L3 programming layer <2020-02-14> (/usr/share/texlive/texmf-dist/tex/latex/base
 /article.cls
@@ -644,33 +644,33 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 106.
 LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <5> on input line 106.
-</home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/73
-/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_files/figure-latex/unna
+</home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/d1
+/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_files/figure-latex/unna
 med-chunk-1-1.pdf, id=20, 273.02pt x 279.0425pt>
 File: /home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/wo
-rk/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_files/figure-latex
+rk/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_files/figure-latex
 /unnamed-chunk-1-1.pdf Graphic file (type pdf)
 <use /home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/wor
-k/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_files/figure-latex/
+k/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_files/figure-latex/
 unnamed-chunk-1-1.pdf>
 Package pdftex.def Info: /home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fas
-tq_QC_processing/work/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report
+tq_QC_processing/work/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report
 _files/figure-latex/unnamed-chunk-1-1.pdf  used on input line 137.
 (pdftex.def)             Requested size: 273.02766pt x 279.05032pt.
 
 LaTeX Warning: `!h' float specifier changed to `!ht'.
 
-</home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/73
-/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_files/figure-latex/unna
+</home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/work/d1
+/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_files/figure-latex/unna
 med-chunk-3-1.pdf, id=21, 348.30125pt x 349.305pt>
 File: /home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/wo
-rk/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_files/figure-latex
+rk/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_files/figure-latex
 /unnamed-chunk-3-1.pdf Graphic file (type pdf)
 <use /home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_QC_processing/wor
-k/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_files/figure-latex/
+k/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_files/figure-latex/
 unnamed-chunk-3-1.pdf>
 Package pdftex.def Info: /home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fas
-tq_QC_processing/work/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report
+tq_QC_processing/work/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report
 _files/figure-latex/unnamed-chunk-3-1.pdf  used on input line 171.
 (pdftex.def)             Requested size: 348.31633pt x 349.32011pt.
 [2pdfTeX warning (ext4): destination with the same identifier (name{table.1}) h
@@ -687,8 +687,8 @@ ation with the same identifier (name{table.2}) has been already used, duplicate
                                                   \fi \fi 
 l.171 ...ure-latex/unnamed-chunk-3-1} \end{center}
                                                    </home/iaguilar/Ongoing_proj
-ect/Colab_Barreto-Rubio/fastq_QC_processing/work/73/7a97dc0c2a14522f3ab5435e2fd
-aba/all_samples_trim_report_files/figure-latex/unnamed-chunk-1-1.pdf>]
+ect/Colab_Barreto-Rubio/fastq_QC_processing/work/d1/804b8546a615dffa71d48dd9a4e
+e5b/all_samples_trim_report_files/figure-latex/unnamed-chunk-1-1.pdf>]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 173.
 [3pdfTeX warning (ext4): destination with the same identifier (name{table.3}) h
 as been already used, duplicate ignored
@@ -697,7 +697,7 @@ as been already used, duplicate ignored
                                                   \fi \fi 
 l.173 \end{document}
                      </home/iaguilar/Ongoing_project/Colab_Barreto-Rubio/fastq_
-QC_processing/work/73/7a97dc0c2a14522f3ab5435e2fdaba/all_samples_trim_report_fi
+QC_processing/work/d1/804b8546a615dffa71d48dd9a4ee5b/all_samples_trim_report_fi
 les/figure-latex/unnamed-chunk-3-1.pdf>]
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 173.
 (./all_samples_trim_report.aux)
@@ -722,7 +722,7 @@ Here is how much of TeX's memory you used:
 public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr10.pfb></usr/sh
 are/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/
 lm/lmr17.pfb>
-Output written on all_samples_trim_report.pdf (3 pages, 114179 bytes).
+Output written on all_samples_trim_report.pdf (3 pages, 114754 bytes).
 PDF statistics:
  71 PDF objects out of 1000 (max. 8388607)
  55 compressed objects within 1 object stream
