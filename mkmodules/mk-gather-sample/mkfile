@@ -1,0 +1,8 @@
+MKSHELL=/bin/bash
+
+%.allreads.fastq:Q:
+	filename=$(basename $stem)
+	all_files=$(find -L . -type f -name "$filename*.fastq.gz" | sort)
+	echo "[DEBUG] concat the following files:"
+	echo "$all_files"
+	zcat $all_files > $target
