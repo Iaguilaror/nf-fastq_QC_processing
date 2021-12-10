@@ -18,3 +18,16 @@ Compatible OS*:
 
 * These commands must be accessible from your $PATH (i.e. you should be able to invoke them from your command line).
 ** Plan9 port builds many binaries, but you ONLY need the mk utility to be accessible from your command line.
+
+#### R packages requierments
+
+| R package | Function | 
+|-----------|----------|
+| rmarkdown | render |
+| dplyr |magrittr, filter(), mutate(), select(), arrange() |
+| knitr | kable|
+| kableExtra | kable_styling |
+| tidyr |pivot_longer() |
+| scales | colour pallettes |
+| ggplot2 | geom_col( ), ggplot() |
+| cowplot | theme_cowplot() |
