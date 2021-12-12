@@ -1,0 +1,130 @@
+---
+title: "Trimming report"
+author: Israel Aguilar
+date: "`r Sys.time()`"
+output: pdf_document
+---
+
+\pagebreak
+
+# Number of reads as totals
+```{r, echo=FALSE, message=FALSE, fig.dim = c(4, 4), fig.align = 'center'}
+# read the data
+data.df <- vroom::vroom(file = "all_samples_trim_report.tsv")
+
+#load libs
+library("dplyr")
+
+# create a DF with min, max and mean for total reads
+# get the obs with the least ammount of reads
+min_obs <- data.df %>%
+  select(sample, original) %>%
+  arrange(original) %>%
+  head( n = 1 )
+
+# get the obs with the most ammount of reads
+max_obs <- data.df %>%
+  select(sample, original) %>%
+  arrange(-original) %>%
+  head( n = 1 )
+
+# get the obs with the mean ammount of reads
+mean_obs <- data.frame( sample = NA, original = mean(data.df$original) )
+
+# print the dataframe
+rbind( min_obs, max_obs, mean_obs) %>%
+  rename( total_reads = original ) %>%
+  mutate( value = c("min", "max", "mean") ) %>%
+  select( value, sample, total_reads) %>%
+  knitr::kable( x = ., caption = 'min and max libraries',
+                format.args = list(big.mark = ",", scientific = FALSE), booktabs = TRUE ) %>%
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position", "striped") )
+
+# print the table
+knitr::kable( x = data.df, caption = 'Raw numbers of reads before and after trimming',
+              format.args = list(big.mark = ",", scientific = FALSE)) %>%
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position", "striped") )
+
+
+
+# pivot data
+longdata.df <- data.df %>%
+  tidyr::pivot_longer( cols = -sample, names_to = "read_subset", values_to = "number" )
+
+
+#load libs
+library("ggplot2")
+library("scales")
+
+#define a palette
+my_palette.v <- c("dropped" = "#040303",
+                  "rev_only" = "#d5f9de",
+                  "fwd_only" = "#dbf4a7",
+                  "pair_survived" = "#8fa6cb")
+
+# define a theme
+my_theme <- theme( axis.text.x = element_text( angle = 90, hjust = 1),
+                   axis.text = element_text(size = 6),
+                   text = element_text( size = 10))
+
+# stacked barplot
+longdata.df %>%
+  filter( read_subset != "original") %>%
+  mutate( read_subset = factor(read_subset, levels = c("dropped",
+                                                       "rev_only",
+                                                       "fwd_only",
+                                                       "pair_survived") )) %>%
+  ggplot( data = ., mapping = aes( x = sample, y = number, fill = read_subset) ) +
+  geom_col( ) +
+  scale_fill_manual( values = my_palette.v) +
+  scale_y_continuous( expand = c(0,0), labels = comma) +
+  labs( title = "Reads surviving trimming",
+        fill = "Trim effect\n on reads") +
+  theme_linedraw() +
+  my_theme
+
+```
+
+# Number of reads as percentage
+```{r, echo=FALSE, message=FALSE}
+
+# create table with freqs
+data_per.df <- data.df %>%
+  mutate( pair_survived = pair_survived / original,
+          fwd_only = fwd_only / original,
+          rev_only = rev_only / original,
+          dropped = dropped / original) %>%
+  select( -original )
+
+# print table with percentages
+data_per.df %>%
+  mutate( pair_survived = percent( pair_survived, accuracy = 0.01),
+          fwd_only = percent( fwd_only, accuracy = 0.01),
+          rev_only = percent( rev_only, accuracy = 0.01),
+          dropped = percent( dropped, accuracy = 0.01)) %>%
+  knitr::kable( x = ., caption = 'Percentage of reads after trimming', align = "lcccc") %>%
+  kableExtra::kable_styling(latex_options = c("scale_down", "hold_position", "striped") )
+```
+
+```{r, echo=FALSE, message=FALSE, fig.dim = c(5, 5), fig.align = 'center'}
+# pivot data
+longdata_per.df <- data_per.df %>%
+  tidyr::pivot_longer( cols = -sample, names_to = "read_subset", values_to = "number" )
+
+# stacked barplot
+longdata_per.df %>%
+  mutate( read_subset = factor(read_subset, levels = c("dropped",
+                                                       "rev_only",
+                                                       "fwd_only",
+                                                       "pair_survived") )) %>%
+  ggplot( data = ., mapping = aes( x = sample, y = number, fill = read_subset) ) +
+  geom_col( ) +
+  scale_fill_manual( values = my_palette.v) +
+  scale_y_continuous( expand = c(0,0), labels= percent ) +
+  labs( title = "Reads surviving trimming",
+        y = "Ammount",
+        fill = "Trim effect\n on reads") +
+  cowplot::theme_cowplot() +
+  my_theme
+
+```
