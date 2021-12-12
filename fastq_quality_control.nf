@@ -8,7 +8,7 @@ The AGUILAR LAB presents...
 - A fastq trimming and BEFORE and AFTER comparisson tool
 
 ==================================================================
-Version: 0.0.1
+Version: 0.0.2
 Project repository: https://github.com/Iaguilaror/fastq_QC_processing
 ==================================================================
 Authors:
@@ -76,7 +76,7 @@ def helpMessage() {
   Define pipeline version
   If you bump the number, remember to bump it in the header description at the begining of this script too
 */
-version = "0.0.1"
+version = "0.0.2"
 
 /*//////////////////////////////
   Define pipeline Name
