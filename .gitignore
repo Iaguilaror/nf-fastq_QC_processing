@@ -26,5 +26,8 @@ test/results*
 ## ignore real data dirs
 real-data
 
+## ignore vestigial files
+*/*/all_samples_trim_report.log
+
 ## ignore modules markedas REDO - means, in need of refactoring or remaking
 *REDO

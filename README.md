@@ -1,10 +1,10 @@
 # fastq_QC_processing
 Short pipeline to analyze and modify fastq Quality
 
-# Requierements 
+# Requierements
 
 Compatible OS*:
-ññññ
+Ubuntu 20.04 LTS
 
 ### Software
 
@@ -15,13 +15,14 @@ Compatible OS*:
 | Fastqc |v0.11.9 | fastqc |
 |Plan9port| Latest (as of 10/01/2019 ) | mk ** |
 |R | v 4.1.2 | Rscript |
+|pandoc | 2.5 | pandoc |
 
 * These commands must be accessible from your $PATH (i.e. you should be able to invoke them from your command line).
 ** Plan9 port builds many binaries, but you ONLY need the mk utility to be accessible from your command line.
 
 #### R packages requierments
 
-| R package | Function | 
+| R package | Function |
 |-----------|----------|
 | rmarkdown | render |
 | dplyr |magrittr, filter(), mutate(), select(), arrange() |

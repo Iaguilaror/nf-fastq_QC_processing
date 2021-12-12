@@ -197,6 +197,7 @@ log.info "\n\n--Pipeline Parameters--"
 /* define function to store nextflow metadata summary info */
 def pipelinesummary = [:]
 /* log parameter values beign used into summary */
+pipelinesummary['trimmomatic: paired-end']			= params.pe
 pipelinesummary['trimmomatic: avgqual']			= params.trim_avgqual
 pipelinesummary['trimmomatic: leading']			= params.trim_leading
 pipelinesummary['trimmomatic: trailing']			= params.trim_trailing
@@ -257,12 +258,21 @@ process _pre1_fastqc_before {
 
 }
 
-/* 	Process _001_trimmomatic */
-/* Read mkfile module files */
-Channel
-	.fromPath("${workflow.projectDir}/mkmodules/mk-trimmomatic/*")
-	.toList()
-	.set{ mkfiles_001 }
+if (params.pe){      // If the data is paired end, we will load the normal module
+	/* 	Process _001_trimmomatic */
+	/* Read mkfile module files */
+	Channel
+		.fromPath("${workflow.projectDir}/mkmodules/mk-trimmomatic/*")
+		.toList()
+		.set{ mkfiles_001 }
+} else {
+	/* 	Process _001_trimmomatic */
+	/* Read mkfile module files */
+	Channel
+		.fromPath("${workflow.projectDir}/mkmodules/mk-trimmomatic-SE/*")
+		.toList()
+		.set{ mkfiles_001 }
+}
 
 process _001_trimmomatic {
 
@@ -291,16 +301,26 @@ process _001_trimmomatic {
 
 /* gather all trimreport.txt files */
 results_001_trimmomatic_trimreport
+	.flatten()
 	.toList()
 	// .view()
 	.set{ all_trimreports }
 
-/* 	Process _an1_trimreport */
-/* Read mkfile module files */
-Channel
-	.fromPath("${workflow.projectDir}/mkmodules/mk-trimreport/*")
-	.toList()
-	.set{ mkfiles_an1 }
+if (params.pe){      // If the data is paired end, we will load the normal module
+	/* 	Process _an1_trimreport */
+	/* Read mkfile module files */
+	Channel
+		.fromPath("${workflow.projectDir}/mkmodules/mk-trimreport/*")
+		.toList()
+		.set{ mkfiles_an1 }
+} else {
+	/* 	Process _an1_trimreport */
+	/* Read mkfile module files */
+	Channel
+		.fromPath("${workflow.projectDir}/mkmodules/mk-trimreport-SE/*")
+		.toList()
+		.set{ mkfiles_an1 }
+}
 
 process _an1_trimreport {
 
@@ -319,30 +339,31 @@ process _an1_trimreport {
 
 }
 
-/* 	Process _pos1_gather_sample */
-/* Read mkfile module files */
-Channel
-	.fromPath("${workflow.projectDir}/mkmodules/mk-gather-sample/*")
-	.toList()
-	.set{ mkfiles_pos1 }
+if (params.pe){    // this last process is only required for PE data
+	/* 	Process _pos1_gather_sample */
+	/* Read mkfile module files */
+	Channel
+		.fromPath("${workflow.projectDir}/mkmodules/mk-gather-sample/*")
+		.toList()
+		.set{ mkfiles_pos1 }
 
-process _pos1_gather_sample {
+	process _pos1_gather_sample {
 
-	publishDir "${results_dir}/_pos1_gather_sample/",mode:"copy"
+		publishDir "${results_dir}/_pos1_gather_sample/",mode:"copy"
 
-	input:
-	file fq from results_001_trimmomatic_trimmed_fq
-	file mk_files from mkfiles_pos1
+		input:
+		file fq from results_001_trimmomatic_trimmed_fq
+		file mk_files from mkfiles_pos1
 
-	output:
-	file "*"
+		output:
+		file "*"
 
-	"""
-	bash runmk.sh
-	"""
+		"""
+		bash runmk.sh
+		"""
 
+	}
 }
-
 /* prepare for ENDing pipeline */
 
 /* _register_configs
