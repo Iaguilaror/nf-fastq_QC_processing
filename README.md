@@ -3,7 +3,8 @@
 Nextflow pipeline to analyze and modify fastq sequence quality
 
 ------------------------------------------------------------------------
-###Workflow overview
+
+### Workflow overview
 
 ![General Workflow](dev_notes/fasqc.drawio.png)
 
@@ -21,7 +22,7 @@ Main output: PDF Trim report
 
 ------------------------------------------------------------------------
 
-# Requirements
+### Requirements
 
 Compatible OS*:
 Ubuntu 20.04 LTS
