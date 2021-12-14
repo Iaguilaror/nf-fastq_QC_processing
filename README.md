@@ -12,21 +12,22 @@ Nextflow pipeline to analyze and modify fastq sequence quality
 
 ### Input 
 
-Directory path with .fastq.gz sequences
+* Directory path with .fastq.gz sequences
 
-Output directory path
+* Output directory path
 
 ### Output 
 
-Main output: PDF Trim report 
+* Main output: PDF Trim report 
 
 ------------------------------------------------------------------------
 
 ### Requirements
 
 Compatible OS*:
-Ubuntu 20.04 LTS
-Ubunto 18.04 LTS
+
+* Ubuntu 20.04 LTS
+* Ubuntu 18.04 LTS
 
 ### Software
 
@@ -102,7 +103,7 @@ To run with your own data go to the pipeline directory and execute:
 
 Params for trimming must be modified in the nextflow.config file
 
-Meaning: trim_avgqual, trim_leading, trim_trailing, etcetera. 
+* Meaning: trim_avgqual, trim_leading, trim_trailing, etcetera. 
 
 ------------------------------------------------------------------------
 
@@ -114,4 +115,4 @@ For information about options and parameters, run:
 
 #### Authors
 
-Israel Aguilar Ordonez
+Israel Aguilar Ordoñez
